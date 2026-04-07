@@ -8,8 +8,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2026-01-02'
 modified: '2026-01-02'
 url: >-
@@ -23,8 +22,7 @@ apis:
       Agents interact with these sandboxes, producing deterministic state-change diffs
       without side effects or rate limits.$.
     humanURL: ' https://www.agentdiff.dev/'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://www.agentdiff.dev/'
