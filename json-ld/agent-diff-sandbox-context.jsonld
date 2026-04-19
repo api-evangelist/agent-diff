@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "agent-diff": "https://agent-diff.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "DiffEntry": "agent-diff:DiffEntry",
+    "id": {
+      "@id": "agent-diff:id",
+      "@type": "xsd:string"
+    },
+    "sandboxId": {
+      "@id": "agent-diff:sandbox_id",
+      "@type": "xsd:string"
+    },
+    "operation": {
+      "@id": "agent-diff:operation",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "agent-diff:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "changes": {
+      "@id": "agent-diff:changes",
+      "@container": "@set",
+      "@type": "@id"
+    },
+    "Sandbox": "agent-diff:Sandbox",
+    "api": {
+      "@id": "agent-diff:api",
+      "@type": "xsd:string"
+    },
+    "scenario": {
+      "@id": "agent-diff:scenario",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "agent-diff:status",
+      "@type": "xsd:string"
+    },
+    "baseUrl": {
+      "@id": "agent-diff:base_url",
+      "@type": "xsd:string"
+    },
+    "createdAt": "schema:dateCreated",
+    "expiresAt": {
+      "@id": "agent-diff:expires_at",
+      "@type": "xsd:dateTime"
+    },
+    "SandboxCreateRequest": "agent-diff:SandboxCreateRequest",
+    "seedData": {
+      "@id": "agent-diff:seed_data",
+      "@type": "@id"
+    },
+    "ttl": {
+      "@id": "agent-diff:ttl",
+      "@type": "xsd:integer"
+    },
+    "DiffList": "agent-diff:DiffList",
+    "diffs": {
+      "@id": "agent-diff:diffs",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "total": {
+      "@id": "agent-diff:total",
+      "@type": "xsd:integer"
+    },
+    "SandboxList": "agent-diff:SandboxList",
+    "sandboxes": {
+      "@id": "agent-diff:sandboxes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

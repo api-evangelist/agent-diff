@@ -1,0 +1,13 @@
+{
+  "id": "500123",
+  "sandbox_id": "500123",
+  "operation": "example_value",
+  "timestamp": "2025-03-15T14:30:00Z",
+  "changes": [
+    {
+      "path": "example_value",
+      "type": "add",
+      "value": "example_value"
+    }
+  ]
+}

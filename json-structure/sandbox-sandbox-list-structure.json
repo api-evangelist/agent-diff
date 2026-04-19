@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-structure/sandbox-sandbox-list-structure.json",
+  "name": "SandboxList",
+  "description": "SandboxList schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "sandboxes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Sandbox"
+      },
+      "example": [
+        "example_value"
+      ]
+    },
+    "total": {
+      "type": "int32",
+      "description": "Total number of matching sandboxes.",
+      "example": 1
+    }
+  }
+}

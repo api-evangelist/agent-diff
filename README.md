@@ -1,41 +1,38 @@
-# Agent Diff (agent-diff)
-Agent Diff creates isolated, ephemeral replicas of 3rd party APIs (Slack, Linear). Agents interact with these sandboxes, producing deterministic state-change diffs without side effects or rate limits.$ 
+# Agent Diff
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/apis.yml)
-
-## Scope
-
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
-
-## Tags:
-
- - API
-
-## Timestamps
-
-- **Created:** 2026-01-02 
-- **Modified:** 2026-01-02 
+Agent Diff creates isolated, ephemeral replicas of third-party APIs (Slack, Linear, GitHub). Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls. Ideal for testing AI agents that interact with external APIs.
 
 ## APIs
 
-### Agent Diff
-Agent Diff creates isolated, ephemeral replicas of 3rd party APIs (Slack, Linear). Agents interact with these sandboxes, producing deterministic state-change diffs without side effects or rate limits.$ 
+- **Agent Diff Sandbox API** — Create and manage ephemeral sandbox replicas of third-party APIs and track agent-produced state diffs.
 
-**Human URL:** [ https://www.agentdiff.dev/]( https://www.agentdiff.dev/)
+## Documentation
 
+- [Agent Diff Website](https://www.agentdiff.dev/)
 
-#### Tags:
+## OpenAPI
 
- - API
+- [Agent Diff Sandbox OpenAPI](openapi/agent-diff-sandbox-openapi.yml)
 
-#### Properties
+## Capabilities
 
-- [Documentation]( https://www.agentdiff.dev/)
+- [API Agent Testing Workflow](capabilities/api-agent-testing.yaml)
+- [Shared: Agent Diff Sandbox API](capabilities/shared/agent-diff-sandbox-api.yaml)
+
+## JSON Schema
+
+- [Sandbox Create Request](json-schema/sandbox-sandbox-create-request-schema.json)
+- [Sandbox](json-schema/sandbox-sandbox-schema.json)
+- [Diff Entry](json-schema/sandbox-diff-entry-schema.json)
+
+## Vocabulary
+
+- [Agent Diff Vocabulary](vocabulary/agent-diff-vocabulary.yaml)
+
+## Tags
+
+API Testing, AI Agents, Sandboxing, API Diffing, Developer Tools
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- Kin Lane (kin@apievangelist.com)

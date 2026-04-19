@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-structure/sandbox-diff-list-structure.json",
+  "name": "DiffList",
+  "description": "DiffList schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "diffs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DiffEntry"
+      },
+      "example": [
+        "example_value"
+      ]
+    },
+    "total": {
+      "type": "int32",
+      "description": "Total number of diffs.",
+      "example": 1
+    }
+  }
+}

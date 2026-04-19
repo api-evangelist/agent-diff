@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-structure/sandbox-sandbox-structure.json",
+  "name": "Sandbox",
+  "description": "Sandbox schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique sandbox identifier.",
+      "example": "500123"
+    },
+    "api": {
+      "type": "string",
+      "description": "The third-party API being sandboxed.",
+      "example": "example_value"
+    },
+    "scenario": {
+      "type": "string",
+      "description": "Scenario name for this sandbox.",
+      "example": "example_value"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "active",
+        "expired",
+        "deleted"
+      ],
+      "description": "Current sandbox status.",
+      "example": "ready"
+    },
+    "base_url": {
+      "type": "string",
+      "description": "Base URL for interacting with the sandbox replica.",
+      "example": "https://example.com"
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": "When the sandbox was created.",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "expires_at": {
+      "type": "datetime",
+      "description": "When the sandbox will expire.",
+      "example": "2025-03-15T14:30:00Z"
+    }
+  }
+}

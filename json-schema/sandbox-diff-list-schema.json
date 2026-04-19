@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/sandbox-diff-list-schema.json",
+  "title": "DiffList",
+  "description": "DiffList schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "diffs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DiffEntry"
+      },
+      "example": [
+        "example_value"
+      ]
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of diffs.",
+      "example": 1
+    }
+  }
+}

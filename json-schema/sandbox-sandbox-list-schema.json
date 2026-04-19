@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/sandbox-sandbox-list-schema.json",
+  "title": "SandboxList",
+  "description": "SandboxList schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "sandboxes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Sandbox"
+      },
+      "example": [
+        "example_value"
+      ]
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of matching sandboxes.",
+      "example": 1
+    }
+  }
+}

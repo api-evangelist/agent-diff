@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/sandbox-sandbox-create-request-schema.json",
+  "title": "SandboxCreateRequest",
+  "description": "SandboxCreateRequest schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "api": {
+      "type": "string",
+      "description": "The third-party API to sandbox (e.g., slack, linear, github).",
+      "example": "example_value"
+    },
+    "scenario": {
+      "type": "string",
+      "description": "Named scenario for the sandbox seed data.",
+      "example": "example_value"
+    },
+    "seed_data": {
+      "type": "object",
+      "description": "Initial state data to populate the sandbox.",
+      "example": {}
+    },
+    "ttl": {
+      "type": "integer",
+      "description": "Time-to-live in seconds before the sandbox expires.",
+      "default": 3600,
+      "example": 1
+    }
+  },
+  "required": [
+    "api"
+  ]
+}

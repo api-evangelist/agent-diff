@@ -1,0 +1,182 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Agent Diff"
+  description: "Unified taxonomy of the Agent Diff Sandbox API covering sandbox management and state-change diff tracking for AI agent testing."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: agent-diff-sandbox-api
+      name: Agent Diff Sandbox API
+      version: "1.0"
+      baseUrl: https://api.agentdiff.dev/v1
+      status: active
+
+  resources:
+    - name: sandboxes
+      description: "Isolated ephemeral replicas of third-party APIs for agent testing."
+      apis:
+        - agent-diff-sandbox-api
+      actions:
+        - create
+        - list
+        - get
+        - delete
+    - name: diffs
+      description: "State-change diffs produced by agent interactions with sandboxes."
+      apis:
+        - agent-diff-sandbox-api
+      actions:
+        - list
+
+  actions:
+    - name: create
+      description: "Create a new sandbox replica."
+      httpMethod: POST
+      pattern: create
+    - name: list
+      description: "List sandboxes or diffs."
+      httpMethod: GET
+      pattern: read
+    - name: get
+      description: "Retrieve a specific sandbox."
+      httpMethod: GET
+      pattern: read
+    - name: delete
+      description: "Delete a sandbox."
+      httpMethod: DELETE
+      pattern: delete
+
+  schemas:
+    sandbox:
+      - name: SandboxCreateRequest
+        description: "Request to create a new sandbox replica."
+        api: agent-diff-sandbox-api
+      - name: Sandbox
+        description: "Isolated API sandbox replica with status and configuration."
+        api: agent-diff-sandbox-api
+      - name: SandboxList
+        description: "Paginated list of sandboxes."
+        api: agent-diff-sandbox-api
+    diff:
+      - name: DiffEntry
+        description: "State-change diff from a single agent operation."
+        api: agent-diff-sandbox-api
+      - name: DiffList
+        description: "Paginated list of diffs."
+        api: agent-diff-sandbox-api
+
+  parameters:
+    pagination:
+      - name: limit
+        description: "Maximum number of results."
+        type: integer
+      - name: offset
+        description: "Pagination offset."
+        type: integer
+    identifiers:
+      - name: sandboxId
+        description: "Sandbox identifier."
+        type: string
+    filters:
+      - name: status
+        description: "Filter by sandbox status."
+        type: string
+      - name: api
+        description: "Filter by sandboxed API name."
+        type: string
+
+  enums:
+    sandbox-statuses:
+      - ready
+      - active
+      - expired
+      - deleted
+    diff-change-types:
+      - add
+      - remove
+      - replace
+    supported-apis:
+      - slack
+      - linear
+      - github
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: "Bearer token authentication for Agent Diff API access."
+        apis:
+          - agent-diff-sandbox-api
+
+capability:
+  workflows:
+    - name: API Agent Testing
+      file: capabilities/api-agent-testing.yaml
+      description: "End-to-end workflow for testing AI agents against isolated ephemeral API sandbox replicas."
+      apisComposed:
+        - agent-diff-sandbox-api
+      toolCount: 4
+      personas:
+        - ai-agent-developer
+        - devops-engineer
+
+  personas:
+    - id: ai-agent-developer
+      name: AI Agent Developer
+      description: "Developer building and testing AI agents that interact with third-party APIs."
+      workflows:
+        - API Agent Testing
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: "Engineer integrating agent testing into CI/CD pipelines for deterministic validation."
+      workflows:
+        - API Agent Testing
+
+  domains:
+    - name: Sandbox Management
+      description: "Creating, managing, and terminating isolated API sandbox replicas."
+      resources:
+        - sandboxes
+    - name: State Diff Tracking
+      description: "Tracking and reviewing state changes produced by agent operations."
+      resources:
+        - diffs
+
+  namespaces:
+    consumed:
+      - agent-diff-sandbox-api
+    rest:
+      - name: agent-diff-api
+        port: 8080
+    mcp:
+      - name: agent-diff-mcp
+        port: 9090
+
+  binds:
+    - name: AGENT_DIFF_TOKEN
+      description: "Bearer token for Agent Diff API authentication."
+      usedIn:
+        - API Agent Testing
+
+crossReference:
+  - resource: sandboxes
+    operations:
+      - create-sandbox
+      - list-sandboxes
+      - get-sandbox
+      - delete-sandbox
+    workflows:
+      - API Agent Testing
+    personas:
+      - ai-agent-developer
+      - devops-engineer
+  - resource: diffs
+    operations:
+      - list-sandbox-diffs
+    workflows:
+      - API Agent Testing
+    personas:
+      - ai-agent-developer
+      - devops-engineer

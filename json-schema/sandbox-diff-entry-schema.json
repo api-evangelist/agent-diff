@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/sandbox-diff-entry-schema.json",
+  "title": "DiffEntry",
+  "description": "DiffEntry schema from Agent Diff API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique diff identifier.",
+      "example": "500123"
+    },
+    "sandbox_id": {
+      "type": "string",
+      "description": "Sandbox that produced this diff.",
+      "example": "500123"
+    },
+    "operation": {
+      "type": "string",
+      "description": "API operation that triggered the state change.",
+      "example": "example_value"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the operation occurred.",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON path to the changed resource."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "add",
+              "remove",
+              "replace"
+            ],
+            "description": "Type of change."
+          },
+          "value": {
+            "description": "New value (for add/replace operations)."
+          }
+        }
+      },
+      "example": [
+        {
+          "path": "example_value",
+          "type": "add",
+          "value": "example_value"
+        }
+      ]
+    }
+  }
+}
