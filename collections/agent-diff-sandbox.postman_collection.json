@@ -1,0 +1,734 @@
+{
+  "item": [
+    {
+      "id": "bd957fbc-4fd3-4a23-9cd5-9f4083e6dbaa",
+      "name": "Sandboxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a6902dc-92c4-4068-bc1b-147ec662bfee",
+          "name": "Agent Diff Create Sandbox",
+          "request": {
+            "name": "Agent Diff Create Sandbox",
+            "description": {
+              "content": "Create an isolated sandbox replica of a third-party API (e.g., Slack, Linear) for agent testing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api\": \"<string>\",\n  \"scenario\": \"<string>\",\n  \"seed_data\": \"<object>\",\n  \"ttl\": 3600\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0ea645d-e2bc-4d4f-94e1-ec1893f7e771",
+              "name": "Sandbox created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"api\": \"slack\",\n  \"scenario\": \"customer-support-workflow\",\n  \"seed_data\": {\n    \"channels\": [\n      {\n        \"name\": \"support\",\n        \"members\": [\n          \"U001\",\n          \"U002\"\n        ]\n      }\n    ],\n    \"users\": [\n      {\n        \"id\": \"U001\",\n        \"name\": \"Alice\"\n      },\n      {\n        \"id\": \"U002\",\n        \"name\": \"Bob\"\n      }\n    ]\n  },\n  \"ttl\": 3600\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"sbox_abc123\",\n  \"api\": \"slack\",\n  \"scenario\": \"customer-support-workflow\",\n  \"status\": \"ready\",\n  \"base_url\": \"https://sbox_abc123.sandbox.agentdiff.dev\",\n  \"created_at\": \"2026-04-19T10:00:00Z\",\n  \"expires_at\": \"2026-04-19T11:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f93e8a59-351d-429f-9a74-8347c1c56f0b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"api\": \"slack\",\n  \"scenario\": \"customer-support-workflow\",\n  \"seed_data\": {\n    \"channels\": [\n      {\n        \"name\": \"support\",\n        \"members\": [\n          \"U001\",\n          \"U002\"\n        ]\n      }\n    ],\n    \"users\": [\n      {\n        \"id\": \"U001\",\n        \"name\": \"Alice\"\n      },\n      {\n        \"id\": \"U002\",\n        \"name\": \"Bob\"\n      }\n    ]\n  },\n  \"ttl\": 3600\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02eec8d1-2275-4bd9-9de2-37cd685e9045",
+          "name": "Agent Diff List Sandboxes",
+          "request": {
+            "name": "Agent Diff List Sandboxes",
+            "description": {
+              "content": "List all active sandboxes for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by sandbox status."
+                },
+                {
+                  "disabled": false,
+                  "key": "api",
+                  "value": "<string>",
+                  "description": "Filter by sandboxed API (e.g., slack, linear)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "428cb48b-454c-4487-bc95-e4549cf2633f",
+              "name": "List of sandboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "ready"
+                    },
+                    {
+                      "key": "api",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sandboxes\": [\n    {\n      \"id\": \"sbox_abc123\",\n      \"api\": \"slack\",\n      \"status\": \"ready\",\n      \"created_at\": \"2026-04-19T10:00:00Z\"\n    }\n  ],\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12c7c284-1835-414d-8202-ff0793f65fc7",
+          "name": "Agent Diff Get Sandbox",
+          "request": {
+            "name": "Agent Diff Get Sandbox",
+            "description": {
+              "content": "Retrieve details of a specific sandbox including its current status and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandboxes",
+                ":sandboxId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxId",
+                  "description": "(Required) Sandbox identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bedf2c49-d5e8-4a6b-aa2d-69d00ccda39a",
+              "name": "Sandbox details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes",
+                    ":sandboxId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxId",
+                      "description": "(Required) Sandbox identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"sbox_abc123\",\n  \"api\": \"slack\",\n  \"scenario\": \"customer-support-workflow\",\n  \"status\": \"active\",\n  \"base_url\": \"https://sbox_abc123.sandbox.agentdiff.dev\",\n  \"created_at\": \"2026-04-19T10:00:00Z\",\n  \"expires_at\": \"2026-04-19T11:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f9b0371-4b0f-4a4d-928f-df2c4b50a319",
+              "name": "Sandbox not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes",
+                    ":sandboxId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxId",
+                      "description": "(Required) Sandbox identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d0f20d6-2fac-497c-892a-c49af800a292",
+          "name": "Agent Diff Delete Sandbox",
+          "request": {
+            "name": "Agent Diff Delete Sandbox",
+            "description": {
+              "content": "Terminate and delete a sandbox, freeing all associated resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandboxes",
+                ":sandboxId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxId",
+                  "description": "(Required) Sandbox identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d68b290-048b-4a85-85b8-dd0ae01dcb55",
+              "name": "Sandbox deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes",
+                    ":sandboxId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxId",
+                      "description": "(Required) Sandbox identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca13bd85-700d-476c-b3a3-0540b30ea26e",
+              "name": "Sandbox not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes",
+                    ":sandboxId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxId",
+                      "description": "(Required) Sandbox identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example_value\",\n  \"message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b95e87b8-8f58-4dbb-aa43-f2d6636efd54",
+      "name": "Diffs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fe85173-252c-4f0e-9d97-23876152e9e0",
+          "name": "Agent Diff List Sandbox Diffs",
+          "request": {
+            "name": "Agent Diff List Sandbox Diffs",
+            "description": {
+              "content": "List state-change diffs produced by agent interactions with a sandbox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sandboxes",
+                ":sandboxId",
+                "diffs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of diffs."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxId",
+                  "description": "(Required) Sandbox identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae6601f1-35ea-40af-9f10-d665506881bf",
+              "name": "List of diffs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sandboxes",
+                    ":sandboxId",
+                    "diffs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "1"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxId",
+                      "description": "(Required) Sandbox identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"diffs\": [\n    {\n      \"id\": \"diff_xyz789\",\n      \"sandbox_id\": \"sbox_abc123\",\n      \"operation\": \"POST /channels\",\n      \"timestamp\": \"2026-04-19T10:05:00Z\",\n      \"changes\": [\n        {\n          \"path\": \"/channels\",\n          \"type\": \"add\",\n          \"value\": {\n            \"id\": \"C003\",\n            \"name\": \"announcements\"\n          }\n        }\n      ]\n    }\n  ],\n  \"total\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.agentdiff.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f754438b-5a92-46ef-9412-00a1b40900b2",
+    "name": "Agent Diff Sandbox API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Agent Diff Sandbox API creates isolated, ephemeral replicas of third-party APIs such as Slack and Linear. Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls.\n\nContact Support:\n Name: Agent Diff",
+      "type": "text/plain"
+    }
+  }
+}

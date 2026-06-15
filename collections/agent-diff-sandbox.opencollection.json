@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agent Diff Sandbox API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sandboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agent Diff List Sandboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agentdiff.dev/v1/sandboxes",
+            "params": [
+              {
+                "name": "status",
+                "value": "ready",
+                "type": "query",
+                "description": "Filter by sandbox status."
+              },
+              {
+                "name": "api",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter by sandboxed API (e.g., slack, linear)."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of results."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "List all active sandboxes for the account."
+        },
+        {
+          "info": {
+            "name": "Agent Diff Create Sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.agentdiff.dev/v1/sandboxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an isolated sandbox replica of a third-party API (e.g., Slack, Linear) for agent testing."
+        },
+        {
+          "info": {
+            "name": "Agent Diff Get Sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agentdiff.dev/v1/sandboxes/:sandboxId",
+            "params": [
+              {
+                "name": "sandboxId",
+                "value": "example_value",
+                "type": "path",
+                "description": "Sandbox identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific sandbox including its current status and configuration."
+        },
+        {
+          "info": {
+            "name": "Agent Diff Delete Sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.agentdiff.dev/v1/sandboxes/:sandboxId",
+            "params": [
+              {
+                "name": "sandboxId",
+                "value": "example_value",
+                "type": "path",
+                "description": "Sandbox identifier."
+              }
+            ]
+          },
+          "docs": "Terminate and delete a sandbox, freeing all associated resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Diffs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agent Diff List Sandbox Diffs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agentdiff.dev/v1/sandboxes/:sandboxId/diffs",
+            "params": [
+              {
+                "name": "sandboxId",
+                "value": "example_value",
+                "type": "path",
+                "description": "Sandbox identifier."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of diffs."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "List state-change diffs produced by agent interactions with a sandbox."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
