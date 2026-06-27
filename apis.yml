@@ -75,7 +75,7 @@ common:
     type: JSONLDContext
   - url: https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/vocabulary/agent-diff-vocabulary.yaml
     type: Vocabulary
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://www.agentdiff.dev/llms.txt
 maintainers:
   - FN: Kin Lane
