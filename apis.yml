@@ -58,6 +58,10 @@ integrations:
   - LangChain Agent Testing
   - OpenAI Function Calling Testing
 common:
+  - type: DomainSecurity
+    url: security/agent-diff-domain-security.yml
+  - type: Authentication
+    url: authentication/agent-diff-authentication.yml
   - url: https://www.agentdiff.dev/
     type: Portal
   - url: https://www.agentdiff.dev/docs

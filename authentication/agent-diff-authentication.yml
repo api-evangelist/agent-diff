@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/agent-diff-sandbox-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token authentication for Agent Diff API.
+  sources:
+  - openapi/agent-diff-sandbox-openapi.yml
