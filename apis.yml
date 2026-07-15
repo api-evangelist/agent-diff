@@ -58,6 +58,8 @@ integrations:
   - LangChain Agent Testing
   - OpenAI Function Calling Testing
 common:
+  - type: AgenticAccess
+    url: agentic-access/agent-diff-agentic-access.yml
   - type: DomainSecurity
     url: security/agent-diff-domain-security.yml
   - type: Authentication
