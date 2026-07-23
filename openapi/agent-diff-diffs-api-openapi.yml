@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Agent Diff Sandbox Diffs API
+  description: The Agent Diff Sandbox API creates isolated, ephemeral replicas of third-party APIs such as Slack and Linear. Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls.
+  version: '1.0'
+  contact:
+    name: Agent Diff
+    url: https://www.agentdiff.dev/
+servers:
+- url: https://api.agentdiff.dev/v1
+  description: Agent Diff API
+security:
+- bearerAuth: []
+tags:
+- name: Diffs
+paths:
+  /sandboxes/{sandboxId}/diffs:
+    get:
+      operationId: list-sandbox-diffs
+      summary: Agent Diff List Sandbox Diffs
+      description: List state-change diffs produced by agent interactions with a sandbox.
+      tags:
+      - Diffs
+      parameters:
+      - name: sandboxId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Sandbox identifier.
+        example: example_value
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Maximum number of diffs.
+        example: 1
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset.
+        example: 1
+      responses:
+        '200':
+          description: List of diffs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiffList'
+              examples:
+                ListDiffsResponse:
+                  summary: List of state-change diffs
+                  value:
+                    diffs:
+                    - id: diff_xyz789
+                      sandbox_id: sbox_abc123
+                      operation: POST /channels
+                      timestamp: '2026-04-19T10:05:00Z'
+                      changes:
+                      - path: /channels
+                        type: add
+                        value:
+                          id: C003
+                          name: announcements
+                    total: 1
+                  x-microcks-default: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DiffEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique diff identifier.
+          example: '500123'
+        sandbox_id:
+          type: string
+          description: Sandbox that produced this diff.
+          example: '500123'
+        operation:
+          type: string
+          description: API operation that triggered the state change.
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          description: When the operation occurred.
+          example: '2025-03-15T14:30:00Z'
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: JSON path to the changed resource.
+              type:
+                type: string
+                enum:
+                - add
+                - remove
+                - replace
+                description: Type of change.
+              value:
+                description: New value (for add/replace operations).
+          example:
+          - path: example_value
+            type: add
+            value: example_value
+    DiffList:
+      type: object
+      properties:
+        diffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffEntry'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of diffs.
+          example: 1
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for Agent Diff API.
