@@ -5,9 +5,22 @@ description: >-
   these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls.
   Ideal for testing AI agents that interact with external APIs.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/agent-diff.png
 tags:
   - API Testing
   - AI Agents
@@ -19,23 +32,30 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: agent-diff:agent-diff-sandbox-api
-    name: Agent Diff Sandbox API
-    description: >-
-      Create and manage isolated, ephemeral sandbox replicas of third-party APIs. Run AI agents against sandboxes to
-      produce deterministic state-change diffs without rate limits or side effects.
-    humanURL: https://www.agentdiff.dev/
-    baseURL: https://api.agentdiff.dev/v1
-    tags:
-      - API Sandboxing
-      - State Diffing
-      - Agent Testing
-    properties:
-      - type: Documentation
-        url: https://www.agentdiff.dev/
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/openapi/agent-diff-sandbox-openapi.yml
-        type: OpenAPI
+- aid: agent-diff:agent-diff-diffs-api
+  name: Agent Diff Diffs API
+  description: The Diffs API from Agent Diff — 1 operation(s) for diffs.
+  humanURL: https://www.agentdiff.dev/
+  baseURL: https://api.agentdiff.dev/v1
+  tags:
+  - Diffs
+  properties:
+  - type: OpenAPI
+    url: openapi/agent-diff-diffs-api-openapi.yml
+  - type: Documentation
+    url: https://www.agentdiff.dev/
+- aid: agent-diff:agent-diff-sandboxes-api
+  name: Agent Diff Sandboxes API
+  description: The Sandboxes API from Agent Diff — 2 operation(s) for sandboxes.
+  humanURL: https://www.agentdiff.dev/
+  baseURL: https://api.agentdiff.dev/v1
+  tags:
+  - Sandboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/agent-diff-sandboxes-api-openapi.yml
+  - type: Documentation
+    url: https://www.agentdiff.dev/
 features:
   - Isolated Ephemeral API Sandbox Replicas
   - Deterministic State-Change Diff Generation
