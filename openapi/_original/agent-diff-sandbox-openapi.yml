@@ -1,0 +1,427 @@
+openapi: 3.1.0
+info:
+  title: Agent Diff Sandbox API
+  description: >-
+    The Agent Diff Sandbox API creates isolated, ephemeral replicas of third-party APIs
+    such as Slack and Linear. Agents interact with these sandboxes to produce deterministic
+    state-change diffs without side effects, rate limits, or real API calls.
+  version: "1.0"
+  contact:
+    name: Agent Diff
+    url: https://www.agentdiff.dev/
+servers:
+- url: https://api.agentdiff.dev/v1
+  description: Agent Diff API
+
+security:
+- bearerAuth: []
+
+paths:
+  /sandboxes:
+    post:
+      operationId: create-sandbox
+      summary: Agent Diff Create Sandbox
+      description: Create an isolated sandbox replica of a third-party API (e.g., Slack, Linear) for agent testing.
+      tags:
+      - Sandboxes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SandboxCreateRequest'
+            examples:
+              CreateSandboxRequest:
+                summary: Create a Slack sandbox
+                value:
+                  api: slack
+                  scenario: customer-support-workflow
+                  seed_data:
+                    channels:
+                    - name: support
+                      members: ["U001", "U002"]
+                    users:
+                    - id: U001
+                      name: Alice
+                    - id: U002
+                      name: Bob
+                  ttl: 3600
+                x-microcks-default: true
+      responses:
+        '201':
+          description: Sandbox created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sandbox'
+              examples:
+                CreateSandboxResponse:
+                  summary: Sandbox creation response
+                  value:
+                    id: "sbox_abc123"
+                    api: slack
+                    scenario: customer-support-workflow
+                    status: ready
+                    base_url: "https://sbox_abc123.sandbox.agentdiff.dev"
+                    created_at: "2026-04-19T10:00:00Z"
+                    expires_at: "2026-04-19T11:00:00Z"
+                  x-microcks-default: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                create-sandbox400Example:
+                  summary: Default create-sandbox 400 response
+                  x-microcks-default: true
+                  value:
+                    error: example_value
+                    message: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    get:
+      operationId: list-sandboxes
+      summary: Agent Diff List Sandboxes
+      description: List all active sandboxes for the account.
+      tags:
+      - Sandboxes
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum: [ready, active, expired]
+        description: Filter by sandbox status.
+        example: ready
+      - name: api
+        in: query
+        schema:
+          type: string
+        description: Filter by sandboxed API (e.g., slack, linear).
+        example: example_value
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Maximum number of results.
+        example: 1
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset.
+        example: 1
+      responses:
+        '200':
+          description: List of sandboxes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SandboxList'
+              examples:
+                ListSandboxesResponse:
+                  summary: List of sandboxes
+                  value:
+                    sandboxes:
+                    - id: "sbox_abc123"
+                      api: slack
+                      status: ready
+                      created_at: "2026-04-19T10:00:00Z"
+                    total: 1
+                  x-microcks-default: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /sandboxes/{sandboxId}:
+    get:
+      operationId: get-sandbox
+      summary: Agent Diff Get Sandbox
+      description: Retrieve details of a specific sandbox including its current status and configuration.
+      tags:
+      - Sandboxes
+      parameters:
+      - name: sandboxId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Sandbox identifier.
+        example: example_value
+      responses:
+        '200':
+          description: Sandbox details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sandbox'
+              examples:
+                GetSandboxResponse:
+                  summary: Sandbox details
+                  value:
+                    id: "sbox_abc123"
+                    api: slack
+                    scenario: customer-support-workflow
+                    status: active
+                    base_url: "https://sbox_abc123.sandbox.agentdiff.dev"
+                    created_at: "2026-04-19T10:00:00Z"
+                    expires_at: "2026-04-19T11:00:00Z"
+                  x-microcks-default: true
+        '404':
+          description: Sandbox not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                get-sandbox404Example:
+                  summary: Default get-sandbox 404 response
+                  x-microcks-default: true
+                  value:
+                    error: example_value
+                    message: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    delete:
+      operationId: delete-sandbox
+      summary: Agent Diff Delete Sandbox
+      description: Terminate and delete a sandbox, freeing all associated resources.
+      tags:
+      - Sandboxes
+      parameters:
+      - name: sandboxId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Sandbox identifier.
+        example: example_value
+      responses:
+        '204':
+          description: Sandbox deleted
+        '404':
+          description: Sandbox not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                delete-sandbox404Example:
+                  summary: Default delete-sandbox 404 response
+                  x-microcks-default: true
+                  value:
+                    error: example_value
+                    message: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /sandboxes/{sandboxId}/diffs:
+    get:
+      operationId: list-sandbox-diffs
+      summary: Agent Diff List Sandbox Diffs
+      description: List state-change diffs produced by agent interactions with a sandbox.
+      tags:
+      - Diffs
+      parameters:
+      - name: sandboxId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Sandbox identifier.
+        example: example_value
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Maximum number of diffs.
+        example: 1
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset.
+        example: 1
+      responses:
+        '200':
+          description: List of diffs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiffList'
+              examples:
+                ListDiffsResponse:
+                  summary: List of state-change diffs
+                  value:
+                    diffs:
+                    - id: "diff_xyz789"
+                      sandbox_id: "sbox_abc123"
+                      operation: "POST /channels"
+                      timestamp: "2026-04-19T10:05:00Z"
+                      changes:
+                      - path: "/channels"
+                        type: add
+                        value:
+                          id: "C003"
+                          name: "announcements"
+                    total: 1
+                  x-microcks-default: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  schemas:
+    SandboxCreateRequest:
+      type: object
+      required:
+      - api
+      properties:
+        api:
+          type: string
+          description: The third-party API to sandbox (e.g., slack, linear, github).
+          example: example_value
+        scenario:
+          type: string
+          description: Named scenario for the sandbox seed data.
+          example: example_value
+        seed_data:
+          type: object
+          description: Initial state data to populate the sandbox.
+          example: {}
+        ttl:
+          type: integer
+          description: Time-to-live in seconds before the sandbox expires.
+          default: 3600
+
+          example: 1
+    Sandbox:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique sandbox identifier.
+          example: '500123'
+        api:
+          type: string
+          description: The third-party API being sandboxed.
+          example: example_value
+        scenario:
+          type: string
+          description: Scenario name for this sandbox.
+          example: example_value
+        status:
+          type: string
+          enum: [ready, active, expired, deleted]
+          description: Current sandbox status.
+          example: ready
+        base_url:
+          type: string
+          description: Base URL for interacting with the sandbox replica.
+          example: https://example.com
+        created_at:
+          type: string
+          format: date-time
+          description: When the sandbox was created.
+          example: '2025-03-15T14:30:00Z'
+        expires_at:
+          type: string
+          format: date-time
+          description: When the sandbox will expire.
+
+          example: '2025-03-15T14:30:00Z'
+    SandboxList:
+      type: object
+      properties:
+        sandboxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sandbox'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of matching sandboxes.
+
+          example: 1
+    DiffEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique diff identifier.
+          example: '500123'
+        sandbox_id:
+          type: string
+          description: Sandbox that produced this diff.
+          example: '500123'
+        operation:
+          type: string
+          description: API operation that triggered the state change.
+          example: example_value
+        timestamp:
+          type: string
+          format: date-time
+          description: When the operation occurred.
+          example: '2025-03-15T14:30:00Z'
+        changes:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: JSON path to the changed resource.
+              type:
+                type: string
+                enum: [add, remove, replace]
+                description: Type of change.
+              value:
+                description: New value (for add/replace operations).
+
+          example:
+          - path: example_value
+            type: add
+            value: example_value
+    DiffList:
+      type: object
+      properties:
+        diffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffEntry'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of diffs.
+
+          example: 1
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code.
+          example: example_value
+        message:
+          type: string
+          description: Human-readable error message.
+
+          example: example_value
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication for Agent Diff API.

@@ -1,0 +1,16 @@
+{
+  "provider": "agent-diff",
+  "sources": [
+    "agent-diff-diffs-api-openapi.yml",
+    "agent-diff-sandboxes-api-openapi.yml"
+  ],
+  "outputs": [
+    "agent-diff-diffs-api-openapi.yml",
+    "agent-diff-sandboxes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
