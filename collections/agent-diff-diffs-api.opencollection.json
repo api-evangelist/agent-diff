@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agent Diff Sandbox Diffs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Diffs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Agent Diff List Sandbox Diffs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.agentdiff.dev/v1/sandboxes/:sandboxId/diffs",
+            "params": [
+              {
+                "name": "sandboxId",
+                "value": "example_value",
+                "type": "path",
+                "description": "Sandbox identifier."
+              },
+              {
+                "name": "limit",
+                "value": "1",
+                "type": "query",
+                "description": "Maximum number of diffs."
+              },
+              {
+                "name": "offset",
+                "value": "1",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ]
+          },
+          "docs": "List state-change diffs produced by agent interactions with a sandbox."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
