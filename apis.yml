@@ -61,6 +61,8 @@ apis:
   humanURL: https://www.agentdiff.dev/
   baseURL: https://api.agentdiff.dev/v1
   tags:
+  - Sandbox
+  tags_raw:
   - Sandboxes
   properties:
   - type: OpenAPI
