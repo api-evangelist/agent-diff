@@ -1,8 +1,7 @@
 {
   "provider": "agent-diff",
   "sources": [
-    "agent-diff-diffs-api-openapi.yml",
-    "agent-diff-sandboxes-api-openapi.yml"
+    "_original/agent-diff-sandbox-openapi.yml"
   ],
   "outputs": [
     "agent-diff-diffs-api-openapi.yml",
@@ -11,6 +10,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "agent-diff-sandbox-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "agent-diff-sandbox-openapi.yml: declared missing tag: Diffs",
+    "agent-diff-sandbox-openapi.yml: declared missing tag: Sandboxes",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "agent-diff-diffs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "agent-diff-sandboxes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

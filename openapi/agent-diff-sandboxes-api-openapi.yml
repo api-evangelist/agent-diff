@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Agent Diff Sandbox Diffs Sandboxes API
+  title: Agent Diff Sandbox Sandboxes API
   description: The Agent Diff Sandbox API creates isolated, ephemeral replicas of third-party APIs such as Slack and Linear. Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls.
   version: '1.0'
   contact:
@@ -224,28 +224,30 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SandboxCreateRequest:
+    SandboxList:
       type: object
-      required:
-      - api
       properties:
-        api:
-          type: string
-          description: The third-party API to sandbox (e.g., slack, linear, github).
-          example: example_value
-        scenario:
-          type: string
-          description: Named scenario for the sandbox seed data.
-          example: example_value
-        seed_data:
-          type: object
-          description: Initial state data to populate the sandbox.
-          example: {}
-        ttl:
+        sandboxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sandbox'
+          example:
+          - example_value
+        total:
           type: integer
-          description: Time-to-live in seconds before the sandbox expires.
-          default: 3600
+          description: Total number of matching sandboxes.
           example: 1
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code.
+          example: example_value
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
     Sandbox:
       type: object
       properties:
@@ -284,30 +286,28 @@ components:
           format: date-time
           description: When the sandbox will expire.
           example: '2025-03-15T14:30:00Z'
-    SandboxList:
+    SandboxCreateRequest:
       type: object
+      required:
+      - api
       properties:
-        sandboxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sandbox'
-          example:
-          - example_value
-        total:
+        api:
+          type: string
+          description: The third-party API to sandbox (e.g., slack, linear, github).
+          example: example_value
+        scenario:
+          type: string
+          description: Named scenario for the sandbox seed data.
+          example: example_value
+        seed_data:
+          type: object
+          description: Initial state data to populate the sandbox.
+          example: {}
+        ttl:
           type: integer
-          description: Total number of matching sandboxes.
+          description: Time-to-live in seconds before the sandbox expires.
+          default: 3600
           example: 1
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code.
-          example: example_value
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
   securitySchemes:
     bearerAuth:
       type: http

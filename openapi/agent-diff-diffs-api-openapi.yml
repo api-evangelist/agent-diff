@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Agent Diff Sandbox Diffs API
   description: The Agent Diff Sandbox API creates isolated, ephemeral replicas of third-party APIs such as Slack and Linear. Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls.
@@ -72,6 +72,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    DiffList:
+      type: object
+      properties:
+        diffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffEntry'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of diffs.
+          example: 1
     DiffEntry:
       type: object
       properties:
@@ -113,19 +126,6 @@ components:
           - path: example_value
             type: add
             value: example_value
-    DiffList:
-      type: object
-      properties:
-        diffs:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiffEntry'
-          example:
-          - example_value
-        total:
-          type: integer
-          description: Total number of diffs.
-          example: 1
   securitySchemes:
     bearerAuth:
       type: http
