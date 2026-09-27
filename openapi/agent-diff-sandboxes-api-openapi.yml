@@ -224,30 +224,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SandboxList:
-      type: object
-      properties:
-        sandboxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Sandbox'
-          example:
-          - example_value
-        total:
-          type: integer
-          description: Total number of matching sandboxes.
-          example: 1
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code.
-          example: example_value
-        message:
-          type: string
-          description: Human-readable error message.
-          example: example_value
     Sandbox:
       type: object
       properties:
@@ -307,6 +283,30 @@ components:
           type: integer
           description: Time-to-live in seconds before the sandbox expires.
           default: 3600
+          example: 1
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code.
+          example: example_value
+        message:
+          type: string
+          description: Human-readable error message.
+          example: example_value
+    SandboxList:
+      type: object
+      properties:
+        sandboxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sandbox'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of matching sandboxes.
           example: 1
   securitySchemes:
     bearerAuth:

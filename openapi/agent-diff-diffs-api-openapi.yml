@@ -72,19 +72,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DiffList:
-      type: object
-      properties:
-        diffs:
-          type: array
-          items:
-            $ref: '#/components/schemas/DiffEntry'
-          example:
-          - example_value
-        total:
-          type: integer
-          description: Total number of diffs.
-          example: 1
     DiffEntry:
       type: object
       properties:
@@ -126,6 +113,19 @@ components:
           - path: example_value
             type: add
             value: example_value
+    DiffList:
+      type: object
+      properties:
+        diffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiffEntry'
+          example:
+          - example_value
+        total:
+          type: integer
+          description: Total number of diffs.
+          example: 1
   securitySchemes:
     bearerAuth:
       type: http
