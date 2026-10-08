@@ -91,6 +91,12 @@ integrations:
 - LangChain Agent Testing
 - OpenAI Function Calling Testing
 common:
+- type: Plans
+  url: plans/agent-diff-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/agent-diff-rate-limits.yml
+- type: FinOps
+  url: finops/agent-diff-finops.yml
 - type: CapabilityMap
   url: capabilities/agent-diff-capability-edges.yml
   name: Agent Diff Business Capability Map
