@@ -1,4 +1,4 @@
-# Agent Diff (agent-diff)
+# Agent Diff
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,61 +66,165 @@
 
 Agent Diff creates isolated, ephemeral replicas of third-party APIs (Slack, Linear, GitHub). Agents interact with these sandboxes to produce deterministic state-change diffs without side effects, rate limits, or real API calls. Ideal for testing AI agents that interact with external APIs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/apis.yml)
+**Areas:** API Testing · AI Agents · Sandboxing · API Diffing · Developer Tools
 
-## Scope
+## Agent Diff on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Agent Diff is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/agent-diff/](https://apis.io/providers/agent-diff/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- API Testing
-- AI Agents
-- Sandboxing
-- API Diffing
-- Developer Tools
+- [Agent Diff Diffs API](https://apis.io/apis/agent-diff/agent-diff-diffs-api/) — The Diffs API from Agent Diff — 1 operation(s) for diffs.
+- [Agent Diff Sandboxes API](https://apis.io/apis/agent-diff/agent-diff-sandboxes-api/) — The Sandboxes API from Agent Diff — 2 operation(s) for sandboxes.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-01-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Agent Diff Sandbox API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Create and manage isolated, ephemeral sandbox replicas of third-party APIs. Run AI agents against sandboxes to produce deterministic state-change diffs without rate limits or side effects.
+- [Agent Diff Agentic Access](https://apis.io/agentic-access/agent-diff/agent-diff-agentic-access/)
 
-- **Human URL:** [https://www.agentdiff.dev/](https://www.agentdiff.dev/)
-- **Base URL:** `https://api.agentdiff.dev/v1`
+#### JSON Schema (5)
 
-#### Tags
+The data models the API reads and writes.
 
-- API Sandboxing
-- State Diffing
-- Agent Testing
+- [DiffEntry](https://apis.io/schemas/agent-diff/sandbox-diff-entry/)
+- [DiffList](https://apis.io/schemas/agent-diff/sandbox-diff-list/)
+- [Sandbox](https://apis.io/schemas/agent-diff/sandbox-sandbox/)
+- [SandboxCreateRequest](https://apis.io/schemas/agent-diff/sandbox-sandbox-create-request/)
+- [SandboxList](https://apis.io/schemas/agent-diff/sandbox-sandbox-list/)
 
-#### Properties
+#### JSON Structure (5)
 
-- [Documentation](https://www.agentdiff.dev/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/openapi/agent-diff-sandbox-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/agent-diff-sandbox.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/agent-diff-sandbox.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Sandbox Diff Entry Structure](https://apis.io/json-structure/agent-diff/sandbox-diff-entry-structure/)
+- [Sandbox Diff List Structure](https://apis.io/json-structure/agent-diff/sandbox-diff-list-structure/)
+- [Sandbox Sandbox Create Request Structure](https://apis.io/json-structure/agent-diff/sandbox-sandbox-create-request-structure/)
+- [Sandbox Sandbox List Structure](https://apis.io/json-structure/agent-diff/sandbox-sandbox-list-structure/)
+- [Sandbox Sandbox Structure](https://apis.io/json-structure/agent-diff/sandbox-sandbox-structure/)
 
-- [Portal](https://www.agentdiff.dev/)
-- [Getting Started](https://www.agentdiff.dev/docs)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/rules/agent-diff-spectral-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/agent-diff-sandbox-sandbox-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-schema/agent-diff-sandbox-diff-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/json-ld/agent-diff-sandbox-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/agent-diff/refs/heads/main/vocabulary/agent-diff-vocabulary.yaml)
-- [L L Ms Txt](https://www.agentdiff.dev/llms.txt)
+#### JSON-LD (1)
 
-## Maintainers
+Linked-data contexts for the provider's vocabulary.
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- [Agent Diff Sandbox Context](https://apis.io/jsonld/agent-diff/agent-diff-sandbox-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Agent Diff Vocabulary](https://apis.io/vocabularies/agent-diff/agent-diff-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Sandbox Diff Entry Example](https://apis.io/examples/agent-diff/sandbox-diff-entry-example/)
+- [Sandbox Diff List Example](https://apis.io/examples/agent-diff/sandbox-diff-list-example/)
+- [Sandbox Sandbox Create Request Example](https://apis.io/examples/agent-diff/sandbox-sandbox-create-request-example/)
+- [Sandbox Sandbox Example](https://apis.io/examples/agent-diff/sandbox-sandbox-example/)
+- [Sandbox Sandbox List Example](https://apis.io/examples/agent-diff/sandbox-sandbox-list-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Agent Diff Sandbox Diffs API](https://apis.io/collections/agent-diff/open-agent-diff-diffs-api/)
+- [Agent Diff Sandbox API](https://apis.io/collections/agent-diff/open-agent-diff-sandbox/)
+- [Agent Diff Sandbox Diffs Sandboxes API](https://apis.io/collections/agent-diff/open-agent-diff-sandboxes-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Agent Diff — jsonschema rules](https://apis.io/rules/agent-diff/agent-diff-jsonschema-spectral-rules/)
+- [Agent Diff API Rules](https://apis.io/rules/agent-diff/agent-diff-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Agent Diff Authentication](https://apis.io/security/agent-diff/agent-diff-authentication/)
+- [Agent Diff Domain Security](https://apis.io/security/agent-diff/agent-diff-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Agent Diff Plans Pricing](https://apis.io/plans/agent-diff/agent-diff-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Agent Diff Rate Limits](https://apis.io/rate-limits/agent-diff/agent-diff-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Agent Diff Finops](https://apis.io/finops/agent-diff/agent-diff-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://agentdiff.dev)
+- [Getting started](https://www.agentdiff.dev/docs)
+
+## API Evangelist rating
+
+**Kin Score 34.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 60.1 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 7.9 |
+
+**Agent readiness 28.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/agent-diff/](https://apis.io/providers/agent-diff/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Agent Diff: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/agent-diff/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
